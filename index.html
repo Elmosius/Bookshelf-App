@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookshelf App</title>
+
+    <!-- Cdn Tailwind CSS -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- Material Design Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+  </head>
+  <body>
+    <header class="text-center px-20 bg-[#B4846C] py-4 text-white sticky top-0 shadow-md">
+      <!-- Awal Navbar -->
+      <div class="container mx-auto flex items-center justify-between">
+        <a href="#" class="text-lg font-semibold">Bookshelf App 🟤</a>
+        <nav>
+          <ul class="flex space-x-6">
+            <li><a href="#addBookSection" class="hover:text-gray-200 font-semibold">Tambah Buku</a></li>
+            <li><a href="#searchBookSection" class="hover:text-gray-200 font-semibold">Cari Buku</a></li>
+            <li><a href="#incompleteListSection" class="hover:text-gray-200 font-semibold">Belum Selesai Dibaca</a></li>
+            <li><a href="#completeListSection" class="hover:text-gray-200 font-semibold">Selesai Dibaca</a></li>
+          </ul>
+        </nav>
+      </div>
+      <!-- Akhir Navbar -->
+    </header>
+
+    <main>
+      <!-- Awal Section Tambah Buku -->
+      <section class="container mx-auto mt-8 bg-white shadow-lg rounded-md p-18 sm:max-w-xl md:max-w-3xl xl:max-w-7xl" id="addBookSection">
+        <h2 class="text-2xl font-bold mb-10"><i class="mdi mdi-plus-circle mr-2"></i>Tambah Buku Baru</h2>
+        <form id="bookForm" data-testid="bookForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label for="bookFormTitle" class="block text-gray-700 text-sm font-bold mb-2">Judul</label>
+            <input id="bookFormTitle" type="text" required data-testid="bookFormTitleInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline" />
+          </div>
+          <div>
+            <label for="bookFormAuthor" class="block text-gray-700 text-sm font-bold mb-2">Penulis</label>
+            <input id="bookFormAuthor" type="text" required data-testid="bookFormAuthorInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline" />
+          </div>
+          <div>
+            <label for="bookFormYear" class="block text-gray-700 text-sm font-bold mb-2">Tahun</label>
+            <input id="bookFormYear" type="number" min="1000" required data-testid="bookFormYearInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline" />
+          </div>
+          <div>
+            <label for="bookFormIsComplete" class="block text-gray-700 text-sm font-bold mb-2">Selesai dibaca</label>
+            <input id="bookFormIsComplete" type="checkbox" data-testid="bookFormIsCompleteCheckbox" class="mr-1 leading-tight" />
+            <span>
+              <small class="text-gray-500">*Centang jika sudah selesai membaca buku ini</small>
+            </span>
+          </div>
+          <div class="md:col-span-2 justify-self-start mt-1">
+            <button id="bookFormSubmit" type="submit" data-testid="bookFormSubmitButton" class="bg-[#7D5A50] hover:bg-[#B4846C] text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-all">
+              Masukkan Buku ke Rak
+            </button>
+          </div>
+        </form>
+      </section>
+      <!-- Akhir Section Tambah Buku -->
+
+      <!-- Awal Section Cari Buku -->
+      <section class="container mx-auto mt-8 p-18 bg-white shadow-lg rounded-md sm:max-w-xl md:max-w-3xl xl:max-w-7xl" id="searchBookSection">
+        <h2 class="text-2xl font-bold mb-10"><i class="mdi mdi-book-search mr-2"></i>Cari Buku</h2>
+        <form id="searchBook" data-testid="searchBookForm" class="flex items-center">
+          <label for="searchBookTitle" class="block text-gray-700 text-sm font-bold mr-5">Judul</label>
+          <input id="searchBookTitle" type="text" data-testid="searchBookFormTitleInput" class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-4" />
+          <button id="searchSubmit" type="submit" data-testid="searchBookFormSubmitButton" class="bg-[#7D5A50] hover:bg-[#B4846C] text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline">Cari</button>
+        </form>
+      </section>
+      <!-- Akhir Section Cari Buku -->
+
+      <!-- Awal Section Edit Buku -->
+      <section id="editBookSection" class="container mx-auto mt-8 p-18 bg-white shadow-lg rounded-md hidden sm:max-w-xl md:max-w-3xl xl:max-w-7xl">
+        <h2 class="text-2xl font-bold mb-10"><i class="mdi mdi-book-edit mr-2"></i>Edit Buku</h2>
+        <form id="editBookForm" data-testid="editBookForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label for="editBookFormTitle" class="block text-gray-700 text-sm font-bold mb-2">Judul</label>
+            <input id="editBookFormTitle" type="text" required data-testid="editBookFormTitleInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline" />
+          </div>
+          <div>
+            <label for="editBookFormAuthor" class="block text-gray-700 text-sm font-bold mb-2">Penulis</label>
+            <input id="editBookFormAuthor" type="text" required data-testid="editBookFormAuthorInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline" />
+          </div>
+          <div>
+            <label for="editBookFormYear" class="block text-gray-700 text-sm font-bold mb-2">Tahun</label>
+            <input id="editBookFormYear" type="number" required data-testid="editBookFormYearInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline" min="1000" />
+          </div>
+          <div class="mb-4">
+            <label for="editBookFormIsCompleteEdit" class="block text-gray-700 text-sm font-bold mb-2">Selesai dibaca</label>
+            <input id="editBookFormIsCompleteEdit" type="checkbox" data-testid="editBookFormIsCompleteCheckbox" class="mr-2 leading-tight" />
+            <span>
+              <small class="text-gray-500">*Centang jika sudah selesai membaca buku ini</small>
+            </span>
+          </div>
+          <input type="hidden" id="editBookId" data-testid="editBookIdInput" />
+          <div class="md:col-span-2 justify-self-start mt-1">
+            <button id="editBookFormSubmit" type="submit" data-testid="editBookFormSubmitButton" class="bg-[#7D5A50] hover:bg-[#B4846C] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+              Simpan Perubahan
+            </button>
+            <button type="button" id="cancelEditButton" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Batal</button>
+          </div>
+        </form>
+      </section>
+      <!-- Akhir Section Edit Buku -->
+
+      <!-- Awal Section Rak Buku (yang belum selesai baca) -->
+      <section class="container mx-auto mt-8 p-18 bg-white shadow-lg rounded-md sm:max-w-xl md:max-w-3xl xl:max-w-7xl" id="incompleteListSection">
+        <h2 class="text-2xl font-bold mb-10"><i class="mdi mdi-book-open-page-variant mr-2"></i> Belum selesai dibaca</h2>
+        <div id="incompleteBookList" data-testid="incompleteBookList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </section>
+      <!-- Akhir Section Rak Buku (yang belum selesai baca) -->
+
+      <!-- Awal  Section Rak Buku (yang udah) -->
+      <section class="container mx-auto mt-8 mb-8 p-18 bg-white shadow-lg rounded-md sm:max-w-xl md:max-w-3xl xl:max-w-7xl" id="completeListSection">
+        <h2 class="text-2xl font-bold mb-4"><i class="mdi mdi-book-check mr-2"></i> Selesai dibaca</h2>
+        <div id="completeBookList" data-testid="completeBookList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </section>
+      <!-- Akhir Section Rak Buku (yang udah) -->
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>
